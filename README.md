@@ -30,5 +30,6 @@ has_many :items
 |user(FK)              |references   |null: false, foreign_key: true|
 |id(PK)                |integer      |null: false                   |
 
+
 ###Association
 belongs_to :user
