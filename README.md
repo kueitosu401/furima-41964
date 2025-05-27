@@ -33,3 +33,32 @@ has_many :item
 
 ###Association
 belongs_to :user
+
+
+## ordersテーブル
+|Column                |Type         |Options                       |
+|id(PK)                |integer      |null: false                   |
+|Card number           |integer      |null: false                   |
+|date of expiry        |integer      |null: false                   |
+|Security Code         |integer      |null: false                   |
+
+
+
+
+## addressテーブル
+
+|Column                |Type         |Options                       |
+|id(PK)                |integer      |null: false                   |
+|post code             |string       |null: false                   |
+|prefectures           |Type         |null: false                   |
+|street address        |string       |null: false                   |
+|Building Name         |string       |null: false                   |
+|telephone number      |integer      |null: false                   |
+
+
+
+・住所テーブル
+見本アプリの購入画面を参考に書いてください
+・購入テーブル
+「だれが」「何を」購入したのかを保存するテーブル
+
