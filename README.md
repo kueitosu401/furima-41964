@@ -2,7 +2,7 @@
 
 ## usersテーブル
 
-|Column                |Type         |Options                  |
+
 |nickname              |string       |null: false              |
 |id                    |integer      |null: false              |
 |email                 |string       |null: false, unique: true|
@@ -13,52 +13,60 @@
 |first_name_kana       |string       |null: false              |
 |date_of_birth         |date         |null: false              |
 
-###Association
-has_many :item
+usersのアソシエーションにordersとのアソシエーションを追加しましょう。
+has_manyの場合紐づくモデル名を複数形で記載しましょう。
 
+###Association
+has_many :items
 
 ## itemsテーブル
 
-|Column                |Type         |Options                       |
-|name                  |string       |null: false                   |
-|descritption          |text         |null: false                   |
-|price                 |integer      |null: false                   |
-|category_id           |integer      |null: false                   |
-|shipping_charge_id    |integer      |null: false                   |
-|condition_id          |integer      |null: false                   |
-|prefecture_id         |integer      |null: false                   |
-|user(FK)              |references   |null: false, foreign_key: true|
-|id(PK)                |integer      |null: false                   |
 
+|product_name          |string       |null: false                   |
+|descritption          |text         |null: false                   |
+|product_description   |integer      |null: false                   |
+|category_id           |integer      |null: false                   |
+|product_condition_id  |integer      |null: false                   |
+|shipping_costs_id     |integer      |null: false                   |
+|region_of_origin_id   |integer      |null: false                   |
+|condition_id          |integer      |null: false                   |
+|delivery_time         |integer      |null: false                   |
+|prefecture_id         |integer      |null: false                   |
+|user                  |references   |null: false, foreign_key: true|
+|sales_price           |integer      |null: false                   |
+|id                    |integer      |null: false                   |
+
+カラム不足
+itemsテーブルに必要なカラムが不足しています。
+出品画面でプルダウンで選択する内容は５つです。Activehashのいずれかのカラムが不足しているようですね。
 
 ###Association
-belongs_to :user
+belongs_to :users
 
 
 ## ordersテーブル
-|Column                |Type         |Options                       |
-|id(PK)                |integer      |null: false                   |
-|Card number           |integer      |null: false                   |
-|date of expiry        |integer      |null: false                   |
-|Security Code         |integer      |null: false                   |
+|id                    |integer      |null: false                   |
+|user                  |integer      |null: false                   |
 
-
+###Association
+belongs_to :users
 
 
 ## addressテーブル
 
-|Column                |Type         |Options                       |
-|id(PK)                |integer      |null: false                   |
-|post code             |string       |null: false                   |
-|prefectures           |Type         |null: false                   |
-|street address        |string       |null: false                   |
-|Building Name         |string       |null: false                   |
-|telephone number      |integer      |null: false                   |
+
+|id                    |integer      |null: false                   |
+|post_code             |string       |null: false                   |
+|prefectures           |string       |null: false                   |
+|street_address        |string       |null: false                   |
+|building_name         |integer      |null: false                   |
+|telephone_number      |string       |null: false                   |
+
+###Association
+belongs_to :users
 
 
 
-・住所テーブル
-見本アプリの購入画面を参考に書いてください
-・購入テーブル
-「だれが」「何を」購入したのかを保存するテーブル
 
+
+＃プルダウンの項目の追加５つ
