@@ -36,7 +36,7 @@ has_many :items
 
 
 ### Association
-belongs_to :users
+belongs_to :order
 
 
 ## ordersテーブル
@@ -53,7 +53,7 @@ belongs_to :users
 |post_code             |string       |null: false                   |
 |prefecture_id         |integer      |null: false                   |
 |street_address        |string       |null: false                   |
-|building_name         |integer      |null: false                   |
+|building_name         |string       |                              |
 |telephone_number      |string       |                              |
 
 ### Association
