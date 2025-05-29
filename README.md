@@ -40,7 +40,7 @@ belongs_to :order
 
 
 ## ordersテーブル
-|id                    |integer      |null: false                   |
+|item                  |references   |null: false, foreign_key: true|
 |user                  |integer      |null: false                   |
 
 ###Association
