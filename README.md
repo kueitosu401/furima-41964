@@ -13,8 +13,7 @@
 |first_name_kana       |string       |null: false              |
 |date_of_birth         |date         |null: false              |
 
-usersのアソシエーションにordersとのアソシエーションを追加しましょう。
-has_manyの場合紐づくモデル名を複数形で記載しましょう。
+
 
 ###Association
 has_many :items
@@ -36,9 +35,7 @@ has_many :items
 |sales_price           |integer      |null: false                   |
 |id                    |integer      |null: false                   |
 
-カラム不足
-itemsテーブルに必要なカラムが不足しています。
-出品画面でプルダウンで選択する内容は５つです。Activehashのいずれかのカラムが不足しているようですね。
+
 
 ###Association
 belongs_to :users
