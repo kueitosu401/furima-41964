@@ -61,9 +61,3 @@ belongs_to :users
 
 ###Association
 belongs_to :users
-
-
-
-
-
-＃プルダウンの項目の追加５つ
