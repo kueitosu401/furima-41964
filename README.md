@@ -4,7 +4,6 @@
 
 
 |nickname              |string       |null: false              |
-|id                    |integer      |null: false              |
 |email                 |string       |null: false, unique: true|
 |encrypted_password    |string       |null: false              |
 |last_name             |string       |null: false              |
@@ -15,7 +14,7 @@
 
 
 
-###Association
+### Association
 has_many :items
 
 ## itemsテーブル
@@ -33,11 +32,10 @@ has_many :items
 |prefecture_id         |integer      |null: false                   |
 |user                  |references   |null: false, foreign_key: true|
 |sales_price           |integer      |null: false                   |
-|id                    |integer      |null: false                   |
 
 
 
-###Association
+### Association
 belongs_to :users
 
 
@@ -49,15 +47,14 @@ belongs_to :users
 belongs_to :users
 
 
-## addressテーブル
+## addressesテーブル
 
 
-|id                    |integer      |null: false                   |
 |post_code             |string       |null: false                   |
-|prefectures           |string       |null: false                   |
+|prefecture_id         |integer      |null: false                   |
 |street_address        |string       |null: false                   |
 |building_name         |integer      |null: false                   |
-|telephone_number      |string       |null: false                   |
+|telephone_number      |string       |                              |
 
-###Association
-belongs_to :users
+### Association
+belongs_to :order
