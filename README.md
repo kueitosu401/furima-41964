@@ -16,42 +16,43 @@
 
 ### Association
 has_many :items
+has_many: orders
 
 ## itemsテーブル
 
 
 |product_name          |string       |null: false                   |
-|descritption          |text         |null: false                   |
-|product_description   |integer      |null: false                   |
-|category_id           |integer      |null: false                   |
-|product_condition_id  |integer      |null: false                   |
-|shipping_costs_id     |integer      |null: false                   |
-|region_of_origin_id   |integer      |null: false                   |
-|condition_id          |integer      |null: false                   |
-|delivery_time         |integer      |null: false                   |
-|prefecture_id         |integer      |null: false                   |
+|product_description   |text         |null: false                   |
+|category_id           |string       |null: false                   |
+|product_condition_id  |string       |null: false                   |
+|shipping_costs_id     |string       |null: false                   |
+|region_of_origin_id   |string       |null: false                   |
+|condition_id          |string       |null: false                   |
+|delivery_time         |string       |null: false                   |
+|prefecture_id         |string       |null: false                   |
 |user                  |references   |null: false, foreign_key: true|
 |sales_price           |integer      |null: false                   |
 
 
 
 ### Association
-belongs_to :order
-
+has_one :order
+has_many: users
 
 ## ordersテーブル
 |item                  |references   |null: false, foreign_key: true|
-|user                  |integer      |null: false                   |
+|user                  |references   |null: false                   |
 
-###Association
-belongs_to :users
-
+### Association
+belongs_to :user
+belongs_to :item
 
 ## addressesテーブル
 
 
 |post_code             |string       |null: false                   |
 |prefecture_id         |integer      |null: false                   |
+|municipalities        |string       |null: false                   |
 |street_address        |string       |null: false                   |
 |building_name         |string       |                              |
 |telephone_number      |string       |                              |
