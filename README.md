@@ -33,6 +33,7 @@ has_many: orders
 |user                  |references   |null: false, foreign_key: true|
 |sales_price           |integer      |null: false                   |
 
+#カラム数が余分
 
 
 ### Association
@@ -41,7 +42,7 @@ has_many: users
 
 ## ordersテーブル
 |item                  |references   |null: false, foreign_key: true|
-|user                  |references   |null: false                   |
+|user                  |references   |null: false, foreign_key: true|
 
 ### Association
 belongs_to :user
@@ -55,7 +56,9 @@ belongs_to :item
 |municipalities        |string       |null: false                   |
 |street_address        |string       |null: false                   |
 |building_name         |string       |                              |
-|telephone_number      |string       |                              |
+|telephone_number      |integer      |                              |
+|order                 |references   |null: false, foreign_key: true|
+
 
 ### Association
 belongs_to :order
