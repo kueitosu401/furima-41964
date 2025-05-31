@@ -24,7 +24,6 @@ has_many: orders
 |product_name          |string       |null: false                   |
 |product_description   |text         |null: false                   |
 |category_id           |string       |null: false                   |
-|product_condition_id  |string       |null: false                   |
 |shipping_costs_id     |string       |null: false                   |
 |region_of_origin_id   |string       |null: false                   |
 |condition_id          |string       |null: false                   |
@@ -33,7 +32,7 @@ has_many: orders
 |user                  |references   |null: false, foreign_key: true|
 |sales_price           |integer      |null: false                   |
 
-#カラム数が余分
+
 
 
 ### Association
@@ -54,7 +53,7 @@ belongs_to :item
 |post_code             |string       |null: false                   |
 |prefecture_id         |integer      |null: false                   |
 |municipalities        |string       |null: false                   |
-|street_address        |string       |null: false                   |
+|street_address        |integer      |null: false                   |
 |building_name         |string       |                              |
 |telephone_number      |integer      |                              |
 |order                 |references   |null: false, foreign_key: true|
