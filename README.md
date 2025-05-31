@@ -37,7 +37,6 @@ has_many: orders
 ### Association
 has_one :order
 belongs_to: users
-has_one: address
 
 ## ordersテーブル
 |item                  |references   |null: false, foreign_key: true|
