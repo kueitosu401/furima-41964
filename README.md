@@ -21,16 +21,16 @@ has_many: orders
 ## itemsテーブル
 
 
-|product_name          |string       |null: false                   |
-|product_description   |text         |null: false                   |
-|category_id           |string       |null: false                   |
-|shipping_costs_id     |string       |null: false                   |
-|region_of_origin_id   |string       |null: false                   |
-|condition_id          |string       |null: false                   |
-|delivery_time         |string       |null: false                   |
-|prefecture_id         |string       |null: false                   |
-|user                  |references   |null: false, foreign_key: true|
-|sales_price           |integer      |null: false                   |
+|product_name             |string       |null: false                   |
+|product_description_id   |text         |null: false                   |
+|category_id              |string       |null: false                   |
+|shipping_costs_id        |string       |null: false                   |
+|region_of_origin_id      |string       |null: false                   |
+|condition_id             |string       |null: false                   |
+|delivery_time            |string       |null: false                   |
+|prefecture_id            |string       |null: false                   |
+|user                     |references   |null: false, foreign_key: true|
+|sales_price              |integer      |null: false                   |
 
 
 
