@@ -22,13 +22,13 @@ has_many: orders
 
 
 |product_name             |string       |null: false                   |
-|product_description_id   |text         |null: false                   |
-|category_id              |string       |null: false                   |
-|shipping_costs_id        |string       |null: false                   |
-|region_of_origin_id      |string       |null: false                   |
-|condition_id             |string       |null: false                   |
+|product_description      |text         |null: false                   |
+|category_id              |integer      |null: false                   |
+|shipping_costs_id        |integer      |null: false                   |
+|region_of_origin_id      |integer      |null: false                   |
+|condition_id             |integer      |null: false                   |
 |delivery_time            |string       |null: false                   |
-|prefecture_id            |string       |null: false                   |
+|prefecture_id            |integer      |null: false                   |
 |user                     |references   |null: false, foreign_key: true|
 |sales_price              |integer      |null: false                   |
 
@@ -37,7 +37,8 @@ has_many: orders
 
 ### Association
 has_one :order
-has_many: users
+belongs_to: users
+has_one: address
 
 ## ordersテーブル
 |item                  |references   |null: false, foreign_key: true|
@@ -55,7 +56,7 @@ belongs_to :item
 |municipalities        |string       |null: false                   |
 |street_address        |integer      |null: false                   |
 |building_name         |string       |                              |
-|telephone_number      |integer      |                              |
+|telephone_number      |integer      |null: false                   |
 |order                 |references   |null: false, foreign_key: true|
 
 
