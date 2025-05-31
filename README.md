@@ -27,7 +27,6 @@ has_many: orders
 |shipping_costs_id        |integer      |null: false                   |
 |region_of_origin_id      |integer      |null: false                   |
 |condition_id             |integer      |null: false                   |
-|delivery_time            |string       |null: false                   |
 |prefecture_id            |integer      |null: false                   |
 |user                     |references   |null: false, foreign_key: true|
 |sales_price              |integer      |null: false                   |
@@ -47,6 +46,7 @@ has_one: address
 ### Association
 belongs_to :user
 belongs_to :item
+has_one: address
 
 ## addressesテーブル
 
