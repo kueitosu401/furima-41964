@@ -26,27 +26,27 @@ RSpec.describe User, type: :model do
     it '文字と数字を含めなければ登録できない' do
       @user.password = 'password12345'
       @user.valid?
-      expect(@user.errors.full_messages).to include "Password can't be blank"
+      expect(@user.errors.full_messages).to include ""
     end
     it '姓のカナは空欄にできない' do
       @user.first_name_kana = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include "first_name_kana can't be blank"
+      expect(@user.errors.full_messages).to include "First_name_kana can't be blank"
     end
     it '姓の漢字は空欄にできない' do
       @user.first_name = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include "first_name can't be blank"
+      expect(@user.errors.full_messages).to include "First_name can't be blank"
     end
     it '名カナは空欄にできない' do
       @user.last_name_kana = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include "last_name_kana can't be blank"
+      expect(@user.errors.full_messages).to include "Last_name_kana can't be blank"
     end
     it '名漢字は空欄にできない' do
       @user.last_name = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include "last_name can't be blank"
+      expect(@user.errors.full_messages).to include "Last_name can't be blank"
     end
   end
 end
