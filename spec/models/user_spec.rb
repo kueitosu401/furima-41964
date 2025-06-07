@@ -23,30 +23,35 @@ RSpec.describe User, type: :model do
     it 'passwordが短すぎでは登録できない' do
       @user.password = '12345'
     end
-    it '文字と数字を含めなければ登録できない' do
-      @user.password = 'password12345'
+    it '数字を含めなければ登録できない' do
+      @user.password = '12345'
       @user.valid?
-      expect(@user.errors.full_messages).to include ""
+      expect(@user.errors.full_messages).to include "Date of birth can't be blank"
+    end
+     it '文字を含めなければ登録できない' do
+      @user.password = 'password'
+      @user.valid?
+      expect(@user.errors.full_messages).to include "First name kana is invalid"
     end
     it '姓のカナは空欄にできない' do
       @user.first_name_kana = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include "First_name_kana can't be blank"
+      expect(@user.errors.full_messages).to include "First name kana can't be blank"
     end
     it '姓の漢字は空欄にできない' do
       @user.first_name = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include "First_name can't be blank"
+      expect(@user.errors.full_messages).to include "First name is invalid"
     end
     it '名カナは空欄にできない' do
       @user.last_name_kana = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include "Last_name_kana can't be blank"
+      expect(@user.errors.full_messages).to include "First name kana can't be blank"
     end
     it '名漢字は空欄にできない' do
       @user.last_name = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include "Last_name can't be blank"
+      expect(@user.errors.full_messages).to include "First name kana can't be blank"
     end
   end
 end
