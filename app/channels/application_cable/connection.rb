@@ -3,5 +3,5 @@ module ApplicationCable
   end
 
   def index
-  end  
+  end
 end
