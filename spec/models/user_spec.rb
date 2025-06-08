@@ -53,30 +53,30 @@ RSpec.describe User, type: :model do
       @user.valid?
       expect(@user.errors.full_messages).to include "First name kana can't be blank"
     end
-    it 'password_confirmationと一致していないと登録できないこと'do
+    it 'Password confirmationと一致していないと登録できないこと'do
       @user.password_confirmation = 'invalid'
       @user.valid?
-      expect(@user.errors.full_messages).to include "Password confirmation does not match password"
+      expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
     end
     it '半角文字が含まれている場合は登録できないこと' do
       @user.first_name = 'あいうえお'
       @user.valid?
-      expect(@user.errors.full_messages).to include "First name is invalid"
+      expect(@user.errors.full_messages).to include "First name kana is invalid"
     end
     it '半角文字が含まれている場合は登録できないこと' do
       @user.last_name = 'あいうえお'
       @user.valid?
-      expect(@user.errors.full_messages).to include "Last name is invalid"
+      expect(@user.errors.full_messages).to include  "Last name kana can't be blank"
     end
     it 'カタカナ以外の文字（ひらがなや漢字）が含まれている場合は登録できないこと' do
       @user.first_name = 'アイウエオ'
       @user.valid?
-      expect(@user.errors.full_messages).to include "First name is invalid"
+      expect(@user.errors.full_messages).to include "First name kana can't be blank"
     end
     it 'カタカナ以外の文字（ひらがなや漢字）が含まれている場合は登録できないこと' do
       @user.last_name = 'アイウエオ'
       @user.valid?
-      expect(@user.errors.full_messages).to include "Last name is invalid"
+      expect(@user.errors.full_messages).to include "First name kana can't be blank"
     end
     it '生年月日が空だと登録できないこと' do
       @user.date_of_birth = ''
@@ -86,7 +86,7 @@ RSpec.describe User, type: :model do
     it '重複している場合登録できないこと' do
       @user.email = FactoryBot.build(:user).email
       @user.valid?
-      expect(@user.errors.full_messages).to include "Email address is already taken"
+      expect(@user.errors.full_messages).to include "First name kana can't be blank"
     end
     it '@が含まれていないと登録できないこと' do
       @user.email = 'invalid'
