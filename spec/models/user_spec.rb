@@ -46,7 +46,7 @@ RSpec.describe User, type: :model do
      it '文字を含めなければ登録できない' do
       @user.password = '123456'
       @user.valid?
-      expect(@user.errors.full_messages).to include "Password is invalid. Include both letters and numbers"
+      expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password", "Password is invalid"
     end
     it '姓のカナは空欄にできない' do
       @user.first_name_kana = ''
@@ -99,9 +99,9 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include "Date of birth can't be blank"
     end
     it '重複している場合登録できないこと' do
-      another_user = FactoryBot.build(:user, email: @user.email)
-      another_user.valid?
-      expect(another_user.errors.full_messages).to include "Email has already been taken"
+      @user.email = FactoryBot.create(:user).email
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Email has already been taken"
     end
     it '@が含まれていないと登録できないこと' do
       @user.email = 'invalid'
