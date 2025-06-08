@@ -26,7 +26,7 @@ RSpec.describe User, type: :model do
     it '数字を含めなければ登録できない' do
       @user.password = '12345'
       @user.valid?
-      expect(@user.errors.full_messages).to include "Date of birth can't be blank"
+      expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
     end
      it '文字を含めなければ登録できない' do
       @user.password = 'password'
