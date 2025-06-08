@@ -2,7 +2,6 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   before do
     @user = FactoryBot.build(:user)
-    @user.save
   end
 
   describe 'ユーザー新規登録' do
@@ -13,14 +12,6 @@ RSpec.describe User, type: :model do
   end 
 
    context 'ユーザー登録できない時' do
-    it 'nicknameが空では登録できない' do
-      @user.nickname = ''
-      @user.valid?
-      expect(@user.errors.full_messages).to include "Nickname can't be blank"
-    end
-  end  
-
-
     it 'nicknameが空では登録できない' do
       @user.nickname = ''
       @user.valid?
@@ -43,8 +34,9 @@ RSpec.describe User, type: :model do
     end
     it '数字を含めなければ登録できない' do
       @user.password = 'password'
+      @user.password_confirmation = 'password'
       @user.valid?
-      expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
+      expect(@user.errors.full_messages).to include "Password is invalid"
     end
     it '全角だと登録できないこと' do
       @user.password = 'あいうえお'
@@ -52,9 +44,9 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include "Password is invalid"
     end
      it '文字を含めなければ登録できない' do
-      @user.password = 'password'
+      @user.password = 'aiueo'
       @user.valid?
-      expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
+      expect(@user.errors.full_messages).to include "Password is invalid. Include both letters and numbers"
     end
     it '姓のカナは空欄にできない' do
       @user.first_name_kana = ''
@@ -117,4 +109,5 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include "Email is invalid"
     end
   end
-  end
+end
+end
