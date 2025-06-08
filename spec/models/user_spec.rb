@@ -5,6 +5,21 @@ RSpec.describe User, type: :model do
   end
 
   describe 'ユーザー新規登録' do
+   context 'ユーザー登録できる時' do
+    it 'ユーザー登録できる時' do
+     expect(@user).to be_valid
+     end
+  end 
+
+   context 'ユーザー登録できない時' do
+    it 'nicknameが空では登録できない' do
+      @user.nickname = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include "Nickname can't be blank"
+    end
+  end  
+
+
     it 'nicknameが空では登録できない' do
       @user.nickname = ''
       @user.valid?
@@ -23,17 +38,17 @@ RSpec.describe User, type: :model do
     it 'passwordが短すぎでは登録できない' do
       @user.password = '12345'
       @user.valid?
-      expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
+      expect(@user.errors.full_messages).to include "Password is too short (minimum is 6 characters)"
     end
     it '数字を含めなければ登録できない' do
-      @user.password = 'abcdef'
+      @user.password = 'password'
       @user.valid?
       expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
     end
     it '全角だと登録できないこと' do
       @user.password = 'あいうえお'
       @user.valid?
-      expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
+      expect(@user.errors.full_messages).to include "Password is invalid"
     end
      it '文字を含めなければ登録できない' do
       @user.password = 'password'
@@ -48,12 +63,12 @@ RSpec.describe User, type: :model do
     it '姓の漢字は空欄にできない' do
       @user.first_name = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include "First name is invalid"
+      expect(@user.errors.full_messages).to include "First name can't be blank"
     end
     it '名カナは空欄にできない' do
       @user.last_name_kana = ''
       @user.valid?
-      expect(@user.errors.full_messages).to include "Last name kana is invalid"
+      expect(@user.errors.full_messages).to include "Last name kana can't be blank"
     end
     it '名漢字は空欄にできない' do
       @user.last_name = ''
@@ -101,4 +116,4 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include "Email is invalid"
     end
   end
-end
+  end
