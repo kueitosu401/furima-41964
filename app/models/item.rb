@@ -1,4 +1,4 @@
-#class Item < ApplicationRecord
-  #has_one :order
+class Item < ApplicationRecord
+  has_one :order
   belongs_to :user
-#end
+end
