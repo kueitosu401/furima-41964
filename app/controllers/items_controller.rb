@@ -63,7 +63,7 @@ class ItemsController < ApplicationController
   end
 
   def set_dropdown_collections
-    @categories = Categorys.all
+    @categories = Category.all
     @item_statuses = Item.all
     @shipping_statuses = Shipping_charge.all
     @prefectures = Prefecture.all
