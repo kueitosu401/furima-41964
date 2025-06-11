@@ -6,7 +6,7 @@ class Item < ApplicationRecord
 extend ActiveHash::Associations::ActiveRecordExtensions
 belongs_to :category
 belongs_to :condition
-belongs_to :shipping_charge
+belongs_to :shipping_cost
 belongs_to :prefecture
 belongs_to :shipping_date
 
@@ -25,9 +25,9 @@ belongs_to :shipping_date
   # ActiveHashで定義された各IDについて、0（未選択を示す'---'のID）以外が選択されていることを検証します
   with_options numericality: { other_than: 0, message: "can't be blank" } do
     validates :category_id
-    validates :condition_id        # 商品の状態のID (コントローラーでは item_status_id が使われています)
-    validates :shipping_charge_id  # 配送料負担のID (コントローラーでは shipping_fee_status_id が使われています)
-    validates :shipping_date_id    # 発送日数のID (コントローラーでは scheduled_delivery_id が使われています)
+    validates :condition_id
+    validates :shipping_cost_id
+    validates :shipping_date_id
     validates :prefecture_id
   end
 end

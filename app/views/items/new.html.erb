@@ -8,7 +8,7 @@
     <%= form_with local: true do |f| %>
 
     <%# インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
-    <%= render 'shared/error_messages', model: f.object %>
+    <%= render 'shared/error_messages', model: @item %>
     <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
 
     <%# 商品画像 %>
@@ -31,7 +31,7 @@
         商品名
         <span class="indispensable">必須</span>
       </div>
-            <%= f.text_area :item_name, class:"items-text", id:"item-name", placeholder:"商品名（必須 40文字まで)", maxlength:"40" %>
+            <%= f.text_area :name, class:"items-text", id:"item-name", placeholder:"商品名（必須 40文字まで)", maxlength:"40" %>
       <div class="items-explain">
         <div class="weight-bold-text">
           商品の説明
@@ -55,7 +55,7 @@
           商品の状態
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:item_status_id, @item_statuses, :id, :name, {prompt: "---"}, {class:"select-box", id:"item-sales-status"}) %>
+        <%= f.collection_select(:condition_id, @conditions, :id, :example, {prompt: "---"}, {class:"select-box", id:"item-sales-status"}) %> <%# 属性名、インスタンス変数、表示メソッドを変更 %>
       </div>
     </div>
     <%# /商品の詳細 %>
@@ -71,7 +71,7 @@
           配送料の負担
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:shipping_fee_status_id, @shipping_fee_statuses, :id, :name, {prompt: "---"}, {class:"select-box", id:"item-shipping-fee-status"}) %>
+        <%= f.collection_select(:shipping_cost_id, @shipping_costs, :id, :charge, {prompt: "---"}, {class:"select-box", id:"item-shipping-fee-status"}) %>
         <div class="weight-bold-text">
           発送元の地域
           <span class="indispensable">必須</span>
@@ -81,7 +81,7 @@
           発送までの日数
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:scheduled_delivery_id, @scheduled_deliveries, :id, :name, {prompt: "---"}, {class:"select-box", id:"item-scheduled-delivery"}) %>
+        <%= f.collection_select(:shipping_date_id, @shipping_dates, :id, :date, {prompt: "---"}, {class:"select-box", id:"item-scheduled-delivery"}) %> <%# ShippingDateモデルのデータキーが :date のため、:name から :date に変更 %>
       </div>
       </div>
     </div>

@@ -73,7 +73,8 @@ app/assets/stylesheets/items/new.css %>
           配送料の負担
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:shipping_fee_status_id, @shipping_fee_statuses, :id, :name, {prompt: "---"}, {class:"select-box", id:"item-shipping-fee-status"}) %>
+        <%= f.collection_select(:shipping_cost_id, @shipping_costs, :id, :charge, {prompt: "---"}, {class:"select-box", id:"item-shipping-fee-status"}) %>
+
 
         <div class="weight-bold-text">
           発送元の地域

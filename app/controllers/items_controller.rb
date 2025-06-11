@@ -46,13 +46,13 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(
       :image,
-      :item_name,
+      :name,
       :description,
       :category_id,
-      :item_status_id,
-      :shipping_fee_status_id,
+      :condition_id,
+      :shipping_cost_id,
       :prefecture_id,
-      :scheduled_delivery_id,
+      :shipping_date_id,
       :price
     ).merge(user_id: current_user.id)
   end
@@ -64,10 +64,10 @@ class ItemsController < ApplicationController
 
   def set_dropdown_collections
     @categories = Category.all
-    @item_statuses = Item.all
-    @shipping_statuses = Shipping_charge.all
+    @conditions = Condition.all
+    @shipping_costs = ShippingCosts.all
     @prefectures = Prefecture.all
-    @scheduled_deliveries = ScheduledDelivery.all
+    @shipping_dates = ShippingDate.all
   end
    
   def ensure_correct_user
