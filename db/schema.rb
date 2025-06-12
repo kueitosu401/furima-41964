@@ -42,7 +42,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_09_081200) do
   create_table "items", charset: "utf8mb3", force: :cascade do |t|
     t.string "product_name", null: false
     t.text "product_description", null: false
-    t.bigint "category_id_id", null: false
+    t.integer "category_id", null: false
     t.integer "shipping_costs_id", null: false
     t.integer "region_of_origin_id", null: false
     t.integer "condition_id", null: false
@@ -51,7 +51,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_06_09_081200) do
     t.integer "sales_price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["category_id_id"], name: "index_items_on_category_id_id"
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 

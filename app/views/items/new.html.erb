@@ -81,8 +81,7 @@
           発送までの日数
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:shipping_date_id, @shipping_dates, :id, :date, {prompt: "---"}, {class:"select-box", id:"item-scheduled-delivery"}) %>
-      </div>
+        <%= f.collection_select(:shipping_costs_id, @shipping_costs, :id, :charge, {prompt: "---"}, {class:"select-box", id:"item-scheduled-delivery"}) %>
       </div>
     </div>
     <%# /配送について %>
@@ -100,7 +99,7 @@
             <span class="indispensable">必須</span>
           </div>
           <span class="sell-yen">¥</span>
-          <%= f.text_field :price, class:"price-input", id:"item-price", placeholder:"例）300" %>
+          <%= f.text_field :hoge, class:"price-input", id:"item-price", placeholder:"例）300" %>
         </div>
         <div class="price-content">
           <span>販売手数料 (10%)</span>
@@ -143,7 +142,7 @@
       <%=link_to 'もどる', root_path, class:"back-btn" %>
     </div>
     <%# /下部ボタン %>
-  </div>
+    </div>
   <% end %>
 
   <footer class="items-sell-footer">

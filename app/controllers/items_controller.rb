@@ -50,7 +50,7 @@ class ItemsController < ApplicationController
       :product_description,
       :category_id,
       :condition_id,
-      :shipping_cost_id,
+      :shipping_costs_id,
       :prefecture_id,
       :shipping_date_id,
       :price
