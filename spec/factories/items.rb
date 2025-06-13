@@ -10,12 +10,5 @@ FactoryBot.define do
     shipping_date_id { 1 }
     association :user
 
-    
-
-    trait :sold_out do
-      after(:create) do |item|
-        create(:order, item: item, user: create(:user))
-      end
-    end
   end
 end
