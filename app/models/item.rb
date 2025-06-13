@@ -12,8 +12,8 @@ belongs_to :prefecture
 belongs_to :shipping_date
 
  with_options presence: true do
-  validates :name
-  validates :description
+  validates :product_name
+  validates :product_description
   validates :price
   validates :image
  end
@@ -27,7 +27,7 @@ belongs_to :shipping_date
   with_options numericality: { other_than: 0, message: "can't be blank" } do
     validates :category_id
     validates :condition_id
-    validates :shipping_cost_id
+    validates :shipping_costs_id
     validates :shipping_date_id
     validates :prefecture_id
   end
