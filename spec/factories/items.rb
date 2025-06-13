@@ -10,5 +10,9 @@ FactoryBot.define do
     shipping_date_id { 1 }
     association :user
 
+    after(:build) do |item|
+      item.image.attach(io: File.open(Rails.root.join('spec/fixtures/sample.png')), filename: 'sample.png', content_type: 'image/png')
+    end
+    
   end
 end
