@@ -11,7 +11,9 @@ t.integer          :condition_id,             null: false
 t.integer          :prefecture_id,            null: false
 t.references       :user,                     null: false, foreign_key: true
 t.integer          :sales_price,              null: false
-t.timestamps
+t.integer          :price,                    null: false
+
+
 
       t.timestamps
     end
