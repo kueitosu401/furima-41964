@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   before do
-    @item = FactoryBot.build(:item)
+    user = FactoryBot.create(:user)
+    @item = FactoryBot.build(:item, user_id: user.id)
   end
 
   describe '商品新規登録' do
@@ -19,18 +20,17 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include "Image can't be blank"
       end
 
-      it 'nameが空では登録できない' do
-        @item.name = ''
+      it 'product_nameが空では登録できない' do
+        @item.product_name = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include "Name can't be blank"
+        expect(@item.errors.full_messages).to include "Product name can't be blank"
       end
 
-      it 'descriptionが空では登録できない' do
-        @item.description = ''
+      it 'product_descriptionが空では登録できない' do
+        @item.product_description = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include "Description can't be blank"
+        expect(@item.errors.full_messages).to include "Product description can't be blank"
       end
-
 
       it 'priceが空では登録できない' do
         @item.price = ''
@@ -62,16 +62,16 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include "Category can't be blank"
       end
 
-      it 'shipping_cost_idが0では登録できない' do
-        @item.shipping_cost_id = 0
+      it 'condition_idが0では登録できない' do
+        @item.condition_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include "Shipping cost can't be blank"
+        expect(@item.errors.full_messages).to include "Condition can't be blank"
       end
 
-      it 'shipping_date_idが0では登録できない' do
-        @item.shipping_date_id = 0
+      it 'shipping_costs_idが0では登録できない' do
+        @item.shipping_costs_id = 0
         @item.valid?
-        expect(@item.errors.full_messages).to include "Shipping date can't be blank"
+        expect(@item.errors.full_messages).to include "Shipping costs can't be blank"
       end
 
       it 'prefecture_idが0では登録できない' do

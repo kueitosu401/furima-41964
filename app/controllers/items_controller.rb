@@ -4,14 +4,14 @@ class ItemsController < ApplicationController
   before_action :set_dropdown_collections, only: [:new, :create, :edit, :update]
   before_action :ensure_correct_user, only: [:edit, :update]
 
-   def index
+  def index
     @items = Item.all.order(created_at: :desc)
-   end
+  end
 
   def new
     @item = Item.new
   end
-  
+
   def show
   end
 
@@ -28,16 +28,13 @@ class ItemsController < ApplicationController
     redirect_to_show
   end
 
-
   def update
-    if @item.update(item_params)
-      return redirect_to item_path(@item)
-    else
-      render 'edit', status: :unprocessable_entity
-    end
+    return redirect_to item_path(@item) if @item.update(item_params)
+
+    render 'edit', status: :unprocessable_entity
   end
 
-    private
+  private
 
   def set_item
     @item = Item.find(params[:id])
@@ -57,9 +54,8 @@ class ItemsController < ApplicationController
     ).merge(user_id: current_user.id)
   end
 
-
   def redirect_to_show
-    return redirect_to root_path if current_user.id != @item.user.id
+    redirect_to root_path if current_user.id != @item.user.id
   end
 
   def set_dropdown_collections
@@ -69,9 +65,9 @@ class ItemsController < ApplicationController
     @prefectures = Prefecture.all
     @shipping_dates = ShippingDate.all
   end
-   
+
   def ensure_correct_user
     redirect_to root_path, alert: if @item.user_id != current_user.id
-   end
+                                  end
   end
 end
