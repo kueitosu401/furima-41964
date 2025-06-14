@@ -1,19 +1,20 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
-  before_action :set_item, only: [:show, :edit, :update]
-  before_action :set_dropdown_collections, only: [:new, :create, :edit, :update]
-  before_action :ensure_correct_user, only: [:edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit]#update
+  before_action :set_item, only: [:show, :edit ] #update
+  before_action :set_dropdown_collections, only: [:new, :create, :edit] #update]
+  before_action :ensure_correct_user, only: [:edit] #update]
 
-  def index
-    @items = Item.all.order(created_at: :desc)
-  end
+  #def index
+    #@items = Item.all.order(created_at: :desc)
+  #end
 
   def new
     @item = Item.new
+    @categories = Category.all
   end
 
-  def show
-  end
+  #def show
+  #end
 
   def create
     @item = Item.new(item_params)
@@ -24,21 +25,21 @@ class ItemsController < ApplicationController
     end
   end
 
-  def edit
-    redirect_to_show
-  end
+  #def edit
+    #redirect_to_show
+  #end
 
-  def update
-    return redirect_to item_path(@item) if @item.update(item_params)
+  #def update
+    #return redirect_to item_path(@item) if @item.update(item_params)
 
-    render 'edit', status: :unprocessable_entity
-  end
+    #render 'edit', status: :unprocessable_entity
+  #end
 
   private
 
-  def set_item
-    @item = Item.find(params[:id])
-  end
+  #def set_item
+    #@item = Item.find(params[:id])
+  #end
 
   def item_params
     params.require(:item).permit(
@@ -54,9 +55,9 @@ class ItemsController < ApplicationController
     ).merge(user_id: current_user.id)
   end
 
-  def redirect_to_show
-    redirect_to root_path if current_user.id != @item.user.id
-  end
+  #def redirect_to_show
+    #redirect_to root_path if current_user.id != @item.user.id
+  #end
 
   def set_dropdown_collections
     @categories = Category.all
@@ -66,8 +67,8 @@ class ItemsController < ApplicationController
     @shipping_dates = ShippingDate.all
   end
 
-  def ensure_correct_user
-    redirect_to root_path, alert: if @item.user_id != current_user.id
-                                  end
-  end
+  #def ensure_correct_user
+    #redirect_to root_path, alert: if @item.user_id != current_user.id
+                                  #end
+  #end
 end

@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   before do
-    user = FactoryBot.create(:user)
-    @item = FactoryBot.build(:item, user: user)
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.build(:item)
   end
 
   describe '商品新規登録' do
@@ -85,6 +85,12 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include 'User must exist'
       end
+
+      it '10000000以上の値では保存できないこと' do
+        @item.price = 10000000
+        @item.valid?
+        expect(@item.errors.full_messages).to include 'Price is out of setting range'
     end
+  end
   end
 end
