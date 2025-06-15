@@ -11,7 +11,7 @@ function comission_cal(){
       const inputValue = document.getElementById("item-price").value;
       let tax = Math.floor(inputValue * 0.1).toLocaleString();
       addTaxDom.innerHTML = tax ;
-      profitDom.innerHTML = Math.ceil(inputValue * 0.9).toLocaleString();
+      profitDom.innerHTML = Math.floor(inputValue * 0.9).toLocaleString();
     })
   }
 }
