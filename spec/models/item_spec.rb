@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   before do
-    @user = FactoryBot.create(:user)
     @item = FactoryBot.build(:item)
   end
 
@@ -90,6 +89,12 @@ RSpec.describe Item, type: :model do
         @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include 'Price is out of setting range'
+      end
+      
+      it '配送予定日は空欄にできないこと' do
+        @item.shipping_date_id = 0
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Shipping date can't be blank"
     end
   end
   end
