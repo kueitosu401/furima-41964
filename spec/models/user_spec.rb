@@ -5,7 +5,7 @@ RSpec.describe User, type: :model do
   end
 
   describe 'ユーザー新規登録' do
-        context 'ユーザー登録できる時' do
+    context 'ユーザー登録できる時' do
       it 'ユーザー登録できる時' do
         expect(@user).to be_valid
       end
