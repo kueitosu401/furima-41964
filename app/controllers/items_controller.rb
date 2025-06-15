@@ -4,9 +4,8 @@ class ItemsController < ApplicationController
   before_action :set_dropdown_collections, only: [:new, :create, :edit] #update]
   before_action :ensure_correct_user, only: [:edit] #update]
 
-  def index
-    @items = Item.all.order(created_at: :desc)
-  end
+
+
 
   def new
     @item = Item.new
