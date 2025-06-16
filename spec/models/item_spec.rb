@@ -86,16 +86,16 @@ RSpec.describe Item, type: :model do
       end
 
       it '10000000以上の値では保存できないこと' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
         expect(@item.errors.full_messages).to include 'Price is out of setting range'
       end
-      
+
       it '配送予定日は空欄にできないこと' do
         @item.shipping_date_id = 0
         @item.valid?
         expect(@item.errors.full_messages).to include "Shipping date can't be blank"
+      end
     end
-  end
   end
 end
