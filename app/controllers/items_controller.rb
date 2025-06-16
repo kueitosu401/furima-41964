@@ -13,8 +13,8 @@ class ItemsController < ApplicationController
     @categories = Category.all
   end
 
-  # def show
-  # end
+  def show
+  end
 
   def create
     @item = Item.new(item_params)
