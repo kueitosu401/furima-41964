@@ -13,8 +13,8 @@ class ItemsController < ApplicationController
     @categories = Category.all
   end
 
-  # def show
-  # end
+  def show
+  end
 
   def create
     @item = Item.new(item_params)
@@ -37,9 +37,9 @@ class ItemsController < ApplicationController
 
   private
 
-  # def set_item
-  # @item = Item.find(params[:id])
-  # end
+  def set_item
+    @item = Item.find(params[:id])
+  end
 
   def item_params
     params.require(:item).permit(
