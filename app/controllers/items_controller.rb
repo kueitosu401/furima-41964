@@ -74,5 +74,6 @@ class ItemsController < ApplicationController
   redirect_to root_path, alert: if @item.user_id != current_user.id
   end
   end
+end
 
 
