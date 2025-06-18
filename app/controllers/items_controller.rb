@@ -1,9 +1,9 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
   # before_action :redirect_to_show, only: :update
-  before_action :set_dropdown_collections, only: [:new, :create, :edit, :update]
-  before_action :ensure_correct_user, only: [:edit, :update]
+  before_action :set_dropdown_collections, only: [:new, :create, :edit, :update, :destroy]
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.all.order(created_at: :desc)
@@ -37,6 +37,12 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    return redirect_to root_path if @item.destroy
+
+    render 'show', status: :unprocessable_entity
+  end
+
   private
 
   def set_item
@@ -59,7 +65,7 @@ class ItemsController < ApplicationController
 
   # def redirect_to_show
   # redirect_to root_path if current_user.id != @item.user.id
-  # end 
+  # end
 
   def set_dropdown_collections
     @categories = Category.all
