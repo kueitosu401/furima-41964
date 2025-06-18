@@ -72,7 +72,6 @@ class ItemsController < ApplicationController
   def ensure_correct_user
     return unless @item.user_id != current_user.id
 
-    redirect_to root_path, alert: if @item.user_id != current_user.id
-                                  end
+    redirect_to root_path
   end
 end
