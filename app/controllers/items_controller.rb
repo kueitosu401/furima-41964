@@ -1,8 +1,9 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit] # update
-  before_action :set_item, only: [:show, :edit] # update
-  before_action :set_dropdown_collections, only: [:new, :create, :edit] # update]
-  before_action :ensure_correct_user, only: [:edit] # update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update]
+  # before_action :redirect_to_show, only: :update
+  before_action :set_dropdown_collections, only: [:new, :create, :edit, :update]
+  before_action :ensure_correct_user, only: [:edit, :update]
 
   def index
     @items = Item.all.order(created_at: :desc)
@@ -19,21 +20,22 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to root_path, notice:
+      redirect_to root_path
     else
       render 'new', status: :unprocessable_entity
     end
   end
 
-  # def edit
-  # redirect_to_show
-  # end
+  def edit
+  end
 
-  # def update
-  # return redirect_to item_path(@item) if @item.update(item_params)
-
-  # render 'edit', status: :unprocessable_entity
-  # end
+  def update
+    if @item.update(item_params)
+      redirect_to item_path(@item)
+    else
+      render 'edit', status: :unprocessable_entity
+    end
+  end
 
   private
 
@@ -67,8 +69,9 @@ class ItemsController < ApplicationController
     @shipping_dates = ShippingDate.all
   end
 
-  # def ensure_correct_user
-  # redirect_to root_path, alert: if @item.user_id != current_user.id
-  # end
-  # end
+  def ensure_correct_user
+    return unless @item.user_id != current_user.id
+
+    redirect_to root_path
+  end
 end
