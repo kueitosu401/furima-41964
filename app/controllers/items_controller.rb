@@ -59,7 +59,7 @@ class ItemsController < ApplicationController
 
   # def redirect_to_show
   # redirect_to root_path if current_user.id != @item.user.id
-  # end
+  # end 
 
   def set_dropdown_collections
     @categories = Category.all
