@@ -15,6 +15,7 @@ class ItemsController < ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
   end
 
   def create
@@ -47,7 +48,7 @@ class ItemsController < ApplicationController
 
 
   def sold_out?
-   buyer.present?
+    buyer.present? && stock == 0
   end
 
   def set_item
