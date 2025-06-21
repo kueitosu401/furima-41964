@@ -1,13 +1,18 @@
 class Item < ApplicationRecord
-  # has_one :order
+  has_one :order
   belongs_to :user
   has_one_attached :image
   has_one :order
 
 
-  def sold_out?
+  def sold?
     order.present?
   end
+
+  def sold_out?
+    sold?
+  end
+
   
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
