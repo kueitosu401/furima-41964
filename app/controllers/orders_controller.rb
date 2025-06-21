@@ -69,7 +69,7 @@ class OrdersController < ApplicationController
     ).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
     end
     
-    def oder_params
+    def order_params
     params.require(:oder).permit(
       :post_code,
       :prefecture_id,
