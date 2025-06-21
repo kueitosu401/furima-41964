@@ -70,7 +70,7 @@ class OrdersController < ApplicationController
     end
     
     def order_params
-    params.require(:oder).permit(
+    params.require(:order_address).permit(
       :post_code,
       :prefecture_id,
       :municipalities,
