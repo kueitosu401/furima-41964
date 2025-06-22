@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
     @order_address = OrderAddress.new(order_address_params)
 
     if @order_address.valid?
-    
+
       Payjp.api_key = ENV['PAYJP_SECRET_KEY']
 
       Payjp::Charge.create(
@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
         currency: 'jpy'
       )
       @order_address.save
-      redirect_to root_path, notice: 
+      redirect_to root_path, notice:
     else
       render :index, status: :unprocessable_entity
     end

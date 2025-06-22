@@ -46,7 +46,6 @@ class ItemsController < ApplicationController
 
   private
 
-
   def sold_out?
     buyer.present? && stock == 0
   end

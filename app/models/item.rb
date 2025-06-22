@@ -4,7 +4,6 @@ class Item < ApplicationRecord
   has_one_attached :image
   has_one :order
 
-
   def sold?
     order.present?
   end
@@ -13,7 +12,6 @@ class Item < ApplicationRecord
     sold?
   end
 
-  
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :condition
