@@ -91,6 +91,17 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Itemを入力してください")
       end
+
+      
+      it 'tokenが空では保存できない' do
+      @order_address.token = ''
+      @order_address.valid?
+      expect(@order_address.errors.full_messages).to include("Token can't be blank")
+      end
+
+      it 'tokenがあれば保存できる' do
+      expect(@order_address).to be_valid
+      end
     end
   end
 end
