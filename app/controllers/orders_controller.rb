@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
   def index
     @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new
+    gon.public_key = ENV['PAYJP_PUBLIC_KEY']
     redirect_to root_path if current_user == @item.user || @item.order.present?
   end
 
@@ -12,7 +13,7 @@ class OrdersController < ApplicationController
     @order_address = OrderAddress.new(order_address_params)
 
     if @order_address.valid?
-      gon.payjp_public_key = ENV['PAYJP_PUBLIC_KEY']
+    
       Payjp.api_key = ENV['PAYJP_SECRET_KEY']
 
       Payjp::Charge.create(
