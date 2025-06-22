@@ -1,5 +1,5 @@
 const pay = () => {
-  const payjp = Payjp('pk_test_116d1896c294d2b5086f3187'); 
+  const payjp = Payjp(gon.payjp_public_key);
   const elements = payjp.elements();
   const numberElement = elements.create('cardNumber');
   const expiryElement = elements.create('cardExpiry');
