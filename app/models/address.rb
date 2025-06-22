@@ -5,10 +5,10 @@ validates :post_code,         presence: true, format: { with: /\A\d{3}-\d{4}\z/,
   validates :street_address,    presence: true
   validates :telephone_number,  presence: true, format: { with: /\A\d{10,11}\z/, message: "は10桁または11桁の数字で入力してください" }
 
-  # アソシエーション（関連付け）
+  
   belongs_to :order
 
-  # ActiveHashとの関連付け（都道府県）
+ 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :prefecture
 end

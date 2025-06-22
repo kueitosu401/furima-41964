@@ -10,7 +10,7 @@ class OrderAddress
     validates :municipalities
     validates :street_address
     validates :telephone_number, format: { with: /\A\d{10,11}\z/, message: "は10桁または11桁の数字で入力してください" }
-    #validates :token
+    validates :token
     validates :user_id
     validates :item_id
   end
