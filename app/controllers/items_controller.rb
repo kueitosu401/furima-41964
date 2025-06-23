@@ -1,9 +1,10 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  # before_action :redirect_to_show, only: :update
+  before_action :redirect_to_show, only: :update
   before_action :set_dropdown_collections, only: [:new, :create, :edit, :update, :destroy]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+  before_action :sold_out_redirect, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.all.order(created_at: :desc)
@@ -84,5 +85,13 @@ class ItemsController < ApplicationController
     return unless @item.user_id != current_user.id
 
     redirect_to root_path
+  end
+
+  def sold_out?
+  @item.buyer.present? || @item.stock == 0
+  end
+
+  def sold_out_redirect
+  redirect_to root_path
   end
 end
