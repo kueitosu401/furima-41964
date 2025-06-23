@@ -16,7 +16,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
 
   def create
@@ -85,10 +84,6 @@ class ItemsController < ApplicationController
     return unless @item.user_id != current_user.id
 
     redirect_to root_path
-  end
-
-  def sold_out?
-  @item.order.present? || @item.stock == 0
   end
 
   def sold_out_redirect
