@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :redirect_to_show, only: :update
+  #before_action :redirect_to_show, only: :update
   before_action :set_dropdown_collections, only: [:new, :create, :edit, :update, :destroy]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
   before_action :sold_out_redirect, only: [:edit, :update, :destroy]
@@ -48,7 +48,7 @@ class ItemsController < ApplicationController
   private
 
   def sold_out?
-    buyer.present? && stock == 0
+    order.present? && stock == 0
   end
 
   def set_item
@@ -88,10 +88,13 @@ class ItemsController < ApplicationController
   end
 
   def sold_out?
-  @item.buyer.present? || @item.stock == 0
+  @item.order.present? || @item.stock == 0
   end
 
   def sold_out_redirect
-  redirect_to root_path
+  if @item.order.present?
+    redirect_to root_path
   end
+  end
+
 end
