@@ -1,9 +1,12 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  # before_action :redirect_to_show, only: :update
   before_action :set_dropdown_collections, only: [:new, :create, :edit, :update, :destroy]
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+  before_action :sold_out_redirect, only: [:edit, :update, :destroy]
+
+  
+
 
   def index
     @items = Item.all.order(created_at: :desc)
@@ -45,6 +48,10 @@ class ItemsController < ApplicationController
 
   private
 
+  def sold_out?
+    order.present? && stock == 0
+  end
+
   def set_item
     @item = Item.find(params[:id])
   end
@@ -80,4 +87,11 @@ class ItemsController < ApplicationController
 
     redirect_to root_path
   end
+
+  def sold_out_redirect
+  if @item.order.present?
+    redirect_to root_path
+  end
+  end
+
 end
