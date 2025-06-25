@@ -12,19 +12,20 @@ const pay = () => {
   const form = document.getElementById('charge-form');
   form.addEventListener("submit", (e) => {
     e.preventDefault();
+  
 
     payjp.createToken(numberElement).then(function (response) {
       if (response.error) {
       } else {
         const token = response.id;
         const tokenObj = `<input type="hidden" name="order_address[token]" value="${token}">`;
-        form.insertAdjacentHTML("beforeend", tokenObj); 
-        
+        form.insertAdjacentHTML("beforeend", tokenObj);
       }
-      form.submit(); 
+      document.getElementById("charge-form").submit();
     });
+      
   });
 };
-
+   
 window.addEventListener("turbo:load", pay);
 window.addEventListener("turbo:render", pay);
