@@ -6,7 +6,7 @@ const pay = () => {
   const cvcElement = elements.create('cardCvc');
 
   numberElement.mount('#number-form');
-  expiryElement.mount('#expiry-form');
+    expiryElement.mount('#expiry-form');
   cvcElement.mount('#cvc-form');
 
   const form = document.getElementById('charge-form');
@@ -20,14 +20,14 @@ const pay = () => {
         const token = response.id;
         const tokenObj = `<input type="hidden" name="order_address[token]" value="${token}">`;
         form.insertAdjacentHTML("beforeend", tokenObj); 
-        form.submit(); 
+        
+
       }
       numberElement.clear();
       expiryElement.clear();
       cvcElement.clear();
       document.getElementById("charge-form").submit();
     });
-    e.preventDefault();
   });
 };
 
