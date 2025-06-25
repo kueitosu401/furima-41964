@@ -18,13 +18,17 @@ const pay = () => {
         alert(response.error.message); 
       } else {
         const token = response.id;
-        const tokenObj = `<input type="hidden" name="order_address[token]" value="${token}">`;
-        form.insertAdjacentHTML("beforeend", tokenObj); 
-        form.submit(); 
+        const renderDom = document.getElementById("charge-form");
+        const tokenObj = `<input value=${token}" name="token" type="hidden">`;
+        renderDom.insertAdjacentHTML("beforeend", tokenObj);
       }
+      numberElement.clear();
+      expiryElement.clear();
+      cvcElement.clear();
+      document.getElementById("charge-form").submit();
     });
+    e.preventDefault();
   });
 };
-
 window.addEventListener("turbo:load", pay);
 window.addEventListener("turbo:render", pay);
