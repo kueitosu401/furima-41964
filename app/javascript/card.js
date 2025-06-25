@@ -22,7 +22,12 @@ const pay = () => {
         form.insertAdjacentHTML("beforeend", tokenObj); 
         form.submit(); 
       }
+      numberElement.clear();
+      expiryElement.clear();
+      cvcElement.clear();
+      document.getElementById("charge-form").submit();
     });
+    e.preventDefault();
   });
 };
 
